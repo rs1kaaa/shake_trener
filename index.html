@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHAKE — Твой фитнес-проводник</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top, #111 0%, #000 100%);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .start-screen {
+      height: 100vh;
+      background: linear-gradient(to top, #000000d0, #00000080), url('https://i.ibb.co/RGsNy0RG/5400046185395385903.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 2s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .start-button {
+      padding: 20px 50px;
+      font-size: 26px;
+      background: linear-gradient(45deg, #e63946, #f3722c);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .start-button:hover {
+      background: linear-gradient(45deg, #f94144, #f8961e);
+    }
+    .content {
+      padding: 40px 20px;
+      display: none;
+      animation: slideUp 1.2s ease;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    p, li {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    a {
+      color: #4cc9f0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .price {
+      margin: 30px 0;
+      font-size: 20px;
+    }
+    img.photo {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 20px;
+      margin: 20px auto;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    .promo-video {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="start-screen">
+  <button class="start-button" onclick="startSite()">🚀 Начать Трансформацию</button>
+</div>
+
+<audio id="bg-music" loop>
+  <source src="https://files.catbox.moe/bqix1l.mp3" type="audio/mpeg">
+</audio>
+
+<div class="content" id="mainContent">
+  <h1>SHAKE — Твой личный тренер</h1>
+  <p>Место силы: <strong>Фитнес-зал "Колизей"</strong></p>
+  <img src="https://i.ibb.co/RGsNy0RG/5400046185395385903.jpg" alt="SHAKE" class="photo" />
+
+  <video class="promo-video" autoplay muted loop playsinline>
+    <source src="https://files.catbox.moe/ytbne6.MP4" type="video/mp4">
+  </video>
+
+  <div class="price">
+    <ul style="list-style: none; padding: 0;">
+      <li>🏋️ Индивидуальные тренировки: <strong>40 000 ₸</strong></li>
+      <li>👥 Групповые тренировки: <strong>20 000 ₸</strong></li>
+      <li>💻 Онлайн-курс: <strong>20 000 ₸</strong> <em>(включает план питания, программу и поддержку)</em></li>
+      <li>🏢 Абонемент зала: <strong>12 000 ₸</strong> (оплачивается отдельно)</li>
+    </ul>
+  </div>
+
+  <p><strong>🔥 За 3 месяца:</strong> — минус 20 кг жира, плюс 10 кг мышц.<br>
+  Научный подход, проверенные методики и 100% результат при соблюдении плана.</p>
+
+  <p>
+    📲 <a href="https://t.me/shake1_bot" target="_blank">Онлайн-бот: Прокачка ягодиц</a><br>
+    💬 <a href="https://wa.me/77058501314" target="_blank">WhatsApp — Записаться</a>
+  </p>
+</div>
+
+<script>
+  const music = document.getElementById("bg-music");
+  let musicStarted = false;
+
+  function startSite() {
+    document.querySelector(".start-screen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+    music.currentTime = 0;
+    music.play();
+    musicStarted = true;
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && musicStarted) {
+      music.pause();
+    }
+  });
+
+  window.addEventListener("beforeunload", () => {
+    if (musicStarted) {
+      music.pause();
+      music.currentTime = 0;
+    }
+  });
+</script>
+
+</body>
+</html>
